@@ -27,4 +27,9 @@ OTHER_FILES += \
 RESOURCES += \
     images.qrc
 
-CONFIG += console
+#CONFIG += console
+
+unix|win32: LIBS += -L$$PWD/../libqtcerebellum/build/ -lqtcerebellum
+
+INCLUDEPATH += $$PWD/../libqtcerebellum/include
+DEPENDPATH += $$PWD/../libqtcerebellum/include
