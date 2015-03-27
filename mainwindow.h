@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 
-#include <QCerebellum/qtcerebellum.h>
+#include "socketthread.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,9 +14,8 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    QCerebellum::Socket socket;
-    QTimer *updater;
+    SocketThread *s;
+    QThread *poller;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -24,9 +23,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void closeEvent(QCloseEvent *e);
 
-public slots:
-    void redraw();
+signals:
+    void closed();
+
 };
 
 #endif // MAINWINDOW_H

@@ -4,11 +4,15 @@
 #include <QtMath>
 
 GLWidget::GLWidget(QWidget *parent) :
-    QWidget(parent),
-    socket(0)
+    QWidget(parent)
 {
 }
 
+void GLWidget::receivePosition(QCerebellum::PositionMessage m)
+{
+    pos = m;
+    update();
+}
 
 void GLWidget::paintEvent(QPaintEvent *)
 {
@@ -16,22 +20,17 @@ void GLWidget::paintEvent(QPaintEvent *)
     QSvgRenderer renderer(QString(":/map.svg"));
     renderer.render(&imagePainter);
     QPainter robotPainter(this);
-    if(socket)
-    {
-        QCerebellum::PositionMessage msg;
-        qDebug() << msg.getName();
 
-        *socket >> msg;
-        double x = msg.x;
-        double y = msg.y;
-        double theta = msg.theta * 180 / M_PI;
-        qDebug() << "X: " << x << "Y: " << y << "Theta: " << theta;
+        double x = pos.x;
+        double y = pos.y;
+        double theta = pos.theta * 180 / M_PI;
+        //qDebug() << "X: " << x << "Y: " << y << "Theta: " << theta;
         robotPainter.resetTransform();
         QBrush brush(QColor(0, 255, 0));
         robotPainter.setBrush(brush);
         robotPainter.rotate(theta);
         robotPainter.drawRect(x, y, 20, 20);
-    }
+
 }
 
 void GLWidget::resizeEvent(QResizeEvent *)

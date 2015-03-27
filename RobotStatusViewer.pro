@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    glwidget.cpp
+    glwidget.cpp \
+    socketthread.cpp
 
 HEADERS  += mainwindow.h \
-    glwidget.h
+    glwidget.h \
+    socketthread.h
 
 FORMS    += mainwindow.ui
 
@@ -29,7 +31,7 @@ RESOURCES += \
 
 #CONFIG += console
 
-unix|win32: LIBS += -L$$PWD/../libqtcerebellum/build/ -lqtcerebellum
+unix|win32: LIBS += -L$$PWD/../build-libqtcerebellum-Desktop-Debug/ -lqtcerebellum
 
 INCLUDEPATH += $$PWD/../libqtcerebellum/include
 DEPENDPATH += $$PWD/../libqtcerebellum/include

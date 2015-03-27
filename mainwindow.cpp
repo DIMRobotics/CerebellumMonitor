@@ -7,16 +7,19 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    socket("tcp://localhost:1234", this),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    updater = new QTimer(this);
 
-    ui->widget->setSocket(&socket);
+    poller = new QThread(this);
+    s = new SocketThread("tcp://localhost:1234", 40, 40); /// TODO: replace it with configuration constant
+    s->moveToThread(poller);
 
-    connect(updater, SIGNAL(timeout()), this, SLOT(redraw()));
-    updater->start(40);
+    connect(s, SIGNAL(positionReceived(QCerebellum::PositionMessage)), ui->widget, SLOT(receivePosition(QCerebellum::PositionMessage)));
+    connect(poller, SIGNAL(finished()), poller, SLOT(deleteLater()));
+    connect(this, SIGNAL(closed()), poller, SLOT(quit()));
+
+    poller->start();
 }
 
 MainWindow::~MainWindow()
@@ -24,11 +27,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::redraw()
+void MainWindow::closeEvent(QCloseEvent *e)
 {
-    QCerebellum::BinaryIMessage msg("demo");
-    socket >> msg;
-
-    ui->lcdNumber->display(QString(msg.getValue()));
-    ui->widget->update();
+    Q_UNUSED(e);
+    emit closed();
+    poller->wait();
 }

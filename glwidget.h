@@ -7,24 +7,23 @@
 #include <QApplication>
 #include <QPainter>
 
-#include <QCerebellum/qtcerebellum.h>
+#include <QCerebellum/msgtypes.h>
 
 class GLWidget : public QWidget
 {
     Q_OBJECT
 
-    QCerebellum::Socket *socket;
+    QCerebellum::PositionMessage pos;
 
 public:
     explicit GLWidget(QWidget *parent = 0);
-    void setSocket(QCerebellum::Socket *s) { socket = s; }
     virtual void paintEvent(QPaintEvent * e);
     virtual void resizeEvent(QResizeEvent *);
 
 signals:
 
 public slots:
-
+    void receivePosition(QCerebellum::PositionMessage m);
 };
 
 #endif // GLWIDGET_H
