@@ -10,7 +10,7 @@ class Robot
 {
 public:
     Robot();
-    void SetPosition(QCerebellum::PositionMessage m);
+    void SetPosition(QCerebellum::PositionMessage& m);
     void Draw(QPainter& painter, double scale);
 private:
     double pos_x, pos_y, theta;

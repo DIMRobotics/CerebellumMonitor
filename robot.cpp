@@ -7,7 +7,7 @@ Robot::Robot():
     renderer(QString(":/robot.svg"))
 {}
 
-void Robot::SetPosition(QCerebellum::PositionMessage m)
+void Robot::SetPosition(QCerebellum::PositionMessage& m)
 {
     pos_x = m.x;
     pos_y = m.y;
