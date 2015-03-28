@@ -31,7 +31,9 @@ RESOURCES += \
 
 #CONFIG += console
 
-unix|win32: LIBS += -L$$PWD/../build-libqtcerebellum-Desktop-Debug/ -lqtcerebellum
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../Загрузки/libqtcerebellum-master/release/ -lqtcerebellum
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../Загрузки/libqtcerebellum-master/debug/ -lqtcerebellum
+else:unix: LIBS += -L$$PWD/../Загрузки/libqtcerebellum-master/ -lqtcerebellum
 
-INCLUDEPATH += $$PWD/../libqtcerebellum/include
-DEPENDPATH += $$PWD/../libqtcerebellum/include
+INCLUDEPATH += $$PWD/../Загрузки/libqtcerebellum-master/include
+DEPENDPATH += $$PWD/../Загрузки/libqtcerebellum-master/include
