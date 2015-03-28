@@ -6,6 +6,7 @@
 #include <QtSvg/QSvgRenderer>
 #include <QApplication>
 #include <QPainter>
+#include <robot.h>
 
 #include <QCerebellum/msgtypes.h>
 
@@ -14,6 +15,7 @@ class GLWidget : public QWidget
     Q_OBJECT
 
     QCerebellum::PositionMessage pos;
+    Robot robot;
 
 public:
     explicit GLWidget(QWidget *parent = 0);

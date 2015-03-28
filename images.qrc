@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>map.svg</file>
+        <file>robot.svg</file>
     </qresource>
 </RCC>

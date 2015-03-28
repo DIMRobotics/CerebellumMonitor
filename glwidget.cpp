@@ -1,6 +1,5 @@
 #include "glwidget.h"
 
-#include <QCerebellum/message.h>
 //#include <QtMath>
 
 GLWidget::GLWidget(QWidget *parent) :
@@ -10,28 +9,18 @@ GLWidget::GLWidget(QWidget *parent) :
 
 void GLWidget::receivePosition(QCerebellum::PositionMessage m)
 {
-    pos = m;
+    robot.SetPosition(m);
     update();
 }
 
 void GLWidget::paintEvent(QPaintEvent *)
 {
     QPainter imagePainter(this);
-    QSvgRenderer renderer(QString(":/map.svg"));
-    renderer.render(&imagePainter);
+    QSvgRenderer imageRenderer(QString(":/map.svg"));
+    imageRenderer.render(&imagePainter);
+
     QPainter robotPainter(this);
-
-        double x = pos.x;
-        double y = pos.y;
-        double theta = pos.theta * 180 / M_PI;
-        robotPainter.resetTransform();
-        QBrush brush(QColor(0, 255, 0));
-        robotPainter.setBrush(brush);
-        robotPainter.scale(this->width() / 300.0, this->height() / 200.0);
-        robotPainter.translate(x, y);
-        robotPainter.rotate(theta);
-        robotPainter.drawRect(-10, -10, 20, 20);
-
+    robot.Draw(robotPainter, this->width() / 300.0);
 }
 
 void GLWidget::resizeEvent(QResizeEvent *)

@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
-    socketthread.cpp
+    socketthread.cpp \
+    robot.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
-    socketthread.h
+    socketthread.h \
+    robot.h
 
 FORMS    += mainwindow.ui
 
