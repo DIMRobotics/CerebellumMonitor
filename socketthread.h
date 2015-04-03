@@ -30,6 +30,7 @@ signals:
 
 public slots:
     void sendTwist(QCerebellum::TwistMessage m);
+    void stop();
 
 private slots:
     void getPosition();
