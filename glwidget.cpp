@@ -25,12 +25,65 @@ void GLWidget::paintEvent(QPaintEvent *)
 
 void GLWidget::resizeEvent(QResizeEvent *)
 {
-    if (3.0 / 2 * this->height() <= this->parentWidget()->width() - 110)
+    if (3.0 / 2 * this->height() <= this->parentWidget()->width() - 20)
     {
         this->resize(3.0 / 2 * this->height(), this->height());
     }
     else
     {
-        this->resize(this->parentWidget()->width() - 110, (this->parentWidget()->width() - 110) * 2.0 / 3.0);
+        this->resize(this->parentWidget()->width() - 20, (this->parentWidget()->width() - 20) * 2.0 / 3.0);
     }
+}
+
+void GLWidget::keyPressEvent(QKeyEvent* event)
+{
+    if(event->isAutoRepeat()) return;
+
+    switch(event->key())
+    {
+    case Qt::Key_W:
+        robot.AddDirection(1.0, 0.0);
+        break;
+    case Qt::Key_S:
+        robot.AddDirection(-1.0, 0.0);
+        break;
+    case Qt::Key_A:
+        robot.AddDirection(0.0, 1.0);
+        break;
+    case Qt::Key_D:
+        robot.AddDirection(0.0, -1.0);
+        break;
+    default:
+        return;
+    }
+    emit speedChanged(QCerebellum::TwistMessage(robot.v_left, robot.v_right, 0.0));
+}
+
+void GLWidget::keyReleaseEvent(QKeyEvent* event)
+{
+    if(event->isAutoRepeat()) return;
+
+    switch(event->key())
+    {
+    case Qt::Key_W:
+        robot.AddDirection(-1.0, 0.0);
+        break;
+    case Qt::Key_S:
+        robot.AddDirection(1.0, 0.0);
+        break;
+    case Qt::Key_A:
+        robot.AddDirection(0.0, -1.0);
+        break;
+    case Qt::Key_D:
+        robot.AddDirection(0.0, 1.0);
+        break;
+    default:
+        return;
+    }
+    emit speedChanged(QCerebellum::TwistMessage(robot.v_left, robot.v_right, 0.0));
+}
+
+void GLWidget::SetSpeed(int v)
+{
+    robot.SetSpeed(v);
 }

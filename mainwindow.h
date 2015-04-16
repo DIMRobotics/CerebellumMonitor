@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QInputDialog>
 
 #include "socketthread.h"
 
@@ -16,7 +17,7 @@ class MainWindow : public QMainWindow
 
     SocketThread *s;
     QThread *poller;
-
+    QString addr;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -25,9 +26,15 @@ private:
     Ui::MainWindow *ui;
     void closeEvent(QCloseEvent *e);
 
+protected:
+    void keyPressEvent(QKeyEvent* event);
+    void keyReleaseEvent(QKeyEvent* event);
+
 signals:
     void closed();
 
+public slots:
+    void setAddress();
 };
 
 #endif // MAINWINDOW_H

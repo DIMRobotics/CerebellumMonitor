@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     w.show();
 
     qRegisterMetaType<QCerebellum::PositionMessage>("QCerebellum::PositionMessage");
+    qRegisterMetaType<QCerebellum::TwistMessage>("QCerebellum::TwistMessage");
 
     return a.exec();
 }

@@ -30,9 +30,9 @@
      inkscape:window-height="1028"
      id="namedview3069"
      showgrid="false"
-     inkscape:zoom="0.53675162"
-     inkscape:cx="688.13666"
-     inkscape:cy="409.35987"
+     inkscape:zoom="0.75908142"
+     inkscape:cx="906.46008"
+     inkscape:cy="301.45468"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="0"
@@ -1117,6 +1117,12 @@ Created by potrace 1.11, written by Peter Selinger 2001-2013
        style="fill:#fbb123;fill-opacity:1;fill-rule:evenodd;stroke:none"
        d="m 85.554157,702.47822 c -0.716445,-0.21124 -1.038092,-1.98214 -1.287474,-7.0885 -0.214772,-4.39769 -0.212234,-63.19086 0.0029,-67.59412 0.214122,-4.38217 0.466976,-6.16441 0.964265,-6.79661 0.206598,-0.26264 0.329808,-0.3063 0.864463,-0.3063 0.983989,0 1.204749,0.40431 1.516551,2.77746 0.424837,3.23346 0.462949,6.36947 0.462949,38.0934 0,34.39929 -0.04276,36.7989 -0.705431,39.59 -0.244188,1.0285 -0.46443,1.29532 -1.109041,1.34359 -0.282894,0.0212 -0.602034,0.0127 -0.7092,-0.0189 l 0,0 z"
        id="path4206"
+       inkscape:connector-curvature="0"
+       transform="scale(0.8,0.8)" />
+    <path
+       style="fill:#fbb123;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 1213.937,1145.9526 0,-5.9282 32.2758,0 32.2759,0 0,5.9282 0,5.9283 -32.2759,0 -32.2758,0 0,-5.9283 z"
+       id="path4208"
        inkscape:connector-curvature="0"
        transform="scale(0.8,0.8)" />
   </g>
